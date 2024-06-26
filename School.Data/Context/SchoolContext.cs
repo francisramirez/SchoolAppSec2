@@ -1,20 +1,18 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+using School.Data.Entities;
 
 namespace School.Data.Context
 {
     public class SchoolContext : DbContext
     {
-        public SchoolContext()
+        public SchoolContext(DbContextOptions<SchoolContext> options):base(options)
         {
                 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseInMemoryDatabase("DbSchool");
-        }
+        public DbSet<Department> Departments { set; get; }
 
 
     }
