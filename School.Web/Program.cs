@@ -1,6 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using School.Data.Context;
+using School.Data.Daos;
+using School.Data.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Services.AddDbContext<SchoolContext>(options => options.UseInMemoryDatabase("SchoolDb"));
+
+builder.Services.AddScoped<IDaoDepartment, DaoDepartment>();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

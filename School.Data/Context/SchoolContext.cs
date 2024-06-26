@@ -1,6 +1,7 @@
 ﻿
 
 using Microsoft.EntityFrameworkCore;
+using School.Data.Entities;
 
 namespace School.Data.Context
 {
@@ -11,10 +12,7 @@ namespace School.Data.Context
                 
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseInMemoryDatabase("DbSchool");
-        }
+        public DbSet<Department> Departments { set; get; }
 
 
     }
