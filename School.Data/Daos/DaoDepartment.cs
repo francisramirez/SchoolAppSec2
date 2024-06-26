@@ -51,12 +51,19 @@ namespace School.Data.Daos
 
         public void UpdateDepartment(Department department)
         {
+
+
+            if (department is null)
+            {
+                throw new ArgumentNullException("El departamento no puede ser nulo.");
+            }
+
             ArgumentNullException.ThrowIfNullOrEmpty(department.Name, "El nombre del departamento es requerido.");
 
 
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(department.Budget, "El Budget no puede ser negativo o cero");
 
-
+          
             this.context.Departments.Update(department);
             this.context.SaveChanges();
         }
