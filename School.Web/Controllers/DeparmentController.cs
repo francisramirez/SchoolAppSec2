@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using School.Data.Entities;
 using School.Data.Interfaces;
 
 namespace School.Web.Controllers
@@ -22,7 +23,8 @@ namespace School.Web.Controllers
         // GET: DeparmentController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var department = this.daoDepartment.GetDepartment(id);
+            return View(department);
         }
 
         // GET: DeparmentController/Create
@@ -34,10 +36,11 @@ namespace School.Web.Controllers
         // POST: DeparmentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Department department)
         {
             try
             {
+                this.daoDepartment.SaveDepartment(department);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -49,16 +52,18 @@ namespace School.Web.Controllers
         // GET: DeparmentController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var department = this.daoDepartment.GetDepartment(id);
+            return View(department);
         }
 
         // POST: DeparmentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Department department)
         {
             try
             {
+                this.daoDepartment.UpdateDepartment(department);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -67,25 +72,6 @@ namespace School.Web.Controllers
             }
         }
 
-        // GET: DeparmentController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: DeparmentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }
