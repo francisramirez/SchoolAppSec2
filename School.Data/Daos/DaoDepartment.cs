@@ -11,6 +11,7 @@ namespace School.Data.Daos
         public DaoDepartment(SchoolContext context)
         {
             this.context = context;
+            CargarDatos();
         }
         public Department GetDepartment(int Id)
         {
@@ -19,7 +20,7 @@ namespace School.Data.Daos
 
         public List<Department> GetDepartments()
         {
-           return this.context.Departments.ToList();
+            return this.context.Departments.ToList();
         }
 
         public void RemoveDepartment(Department department)
@@ -44,7 +45,7 @@ namespace School.Data.Daos
 
             ArgumentNullException.ThrowIfNullOrEmpty(department.Name, "El nombre del departamento es requerido.");
 
-           this.context.Departments.Add(department);
+            this.context.Departments.Add(department);
             this.context.SaveChanges();
         }
 
@@ -59,5 +60,40 @@ namespace School.Data.Daos
             this.context.Departments.Update(department);
             this.context.SaveChanges();
         }
+
+        private void CargarDatos()
+        {
+
+            if (!this.context.Departments.Any())
+            {
+                List<Department> asientos = new List<Department>()
+            {
+                new Department()
+                {
+                     Administrator= 1, Budget = 200, Id= 1,  Name ="Depto 1", StartDate = DateTime.Now
+                },
+                 new Department()
+                {
+                     Administrator= 1, Budget = 300, Id= 2,  Name ="Depto 2", StartDate = DateTime.Now
+                },
+                 new Department()
+                {
+                     Administrator= 1, Budget = 400, Id= 3,  Name ="Depto 3", StartDate = DateTime.Now
+                },
+                new Department()
+                {
+                     Administrator= 1, Budget = 300, Id= 4,  Name ="Depto 4", StartDate = DateTime.Now
+                },
+            };
+
+
+                this.context.Departments.AddRange(asientos);
+                this.context.SaveChanges();
+            }
+
+
+
+        }
+
     }
 }
