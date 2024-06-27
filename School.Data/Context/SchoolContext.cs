@@ -14,6 +14,6 @@ namespace School.Data.Context
 
         public DbSet<Department> Departments { set; get; }
 
-
+        public DbSet<Course> Courses { set; get; }
     }
 }
