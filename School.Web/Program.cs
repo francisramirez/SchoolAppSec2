@@ -12,6 +12,7 @@ builder.Services.AddDbContext<SchoolContext>(options => options.UseInMemoryDatab
 
 builder.Services.AddScoped<IDaoDepartment, DaoDepartment>();
 
+builder.Services.AddScoped<ICourseDb, CourseDb>();
 
 builder.Services.AddControllersWithViews();
 
