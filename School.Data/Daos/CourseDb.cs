@@ -13,6 +13,7 @@ namespace School.Data.Daos
         public CourseDb(SchoolContext context)
         {
             this.context = context;
+            this.CargarDatos();
         }
         public Course GetCourse(int Id)
         {
@@ -61,6 +62,37 @@ namespace School.Data.Daos
 
             this.context.Courses.Update(course);
             this.context.SaveChanges();
+        }
+
+        private void CargarDatos()
+        {
+
+            if (!this.context.Courses.Any())
+            {
+                List<Course> courses = new List<Course>()
+            {
+                new Course()
+                {
+                    Credits = 4, DepartmentId =1, Description ="Desc 1", Id = 1, Title ="DevOps"
+                },
+                  new Course()
+                {
+                    Credits = 3, DepartmentId =1, Description ="Desc 2", Id = 2, Title ="Big Data"
+                },
+                    new Course()
+                {
+                    Credits = 4, DepartmentId =1, Description ="Desc 3", Id = 3, Title ="Prog. II"
+                },
+
+            };
+
+
+                this.context.Courses.AddRange(courses);
+                this.context.SaveChanges();
+            }
+
+
+
         }
     }
 }
