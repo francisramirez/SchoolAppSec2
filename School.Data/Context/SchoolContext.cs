@@ -11,6 +11,12 @@ namespace School.Data.Context
         {
                 
         }
+        public SchoolContext() { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseInMemoryDatabase("SchoolDb");
+        }
 
         public DbSet<Department> Departments { set; get; }
 

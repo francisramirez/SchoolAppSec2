@@ -42,11 +42,21 @@ namespace School.Data.Daos
         public void SaveCourse(Course course)
         {
 
-            ArgumentNullException.ThrowIfNull(nameof(course), "El curso no puede nulo.");
+            if (course is null)
+            {
+                throw new ArgumentNullException("El curso no puede nulo.");
+            }
 
-            ArgumentNullException.ThrowIfNullOrEmpty(course.Title, "El titulo es requerido.");
+            //if (string.IsNullOrEmpty(course.Title))
+            //{
 
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(course.Credits, "El credito no puede negativo ni cero.");
+            //}
+
+          //  ArgumentNullException.ThrowIfNull(nameof(course), "El curso no puede nulo.");
+
+            //ArgumentNullException.ThrowIfNullOrEmpty(course.Title, "El titulo es requerido.");
+
+            //ArgumentOutOfRangeException.ThrowIfNegativeOrZero(course.Credits, "El credito no puede negativo ni cero.");
 
             this.context.Courses.Add(course);
             this.context.SaveChanges();

@@ -1,5 +1,6 @@
 ﻿using School.Data.Context;
 using School.Data.Entities;
+using School.Data.Exceptions;
 using School.Data.Interfaces;
 
 namespace School.Data.Daos
@@ -15,6 +16,10 @@ namespace School.Data.Daos
         }
         public Department GetDepartment(int Id)
         {
+            if (Id == 0)
+                throw new DepartmentGetExeptionId("El codigo del departamento es requerido.");
+
+
             return this.context.Departments.Find(Id);
         }
 
@@ -38,13 +43,15 @@ namespace School.Data.Daos
 
         public void SaveDepartment(Department department)
         {
-            //if (string.IsNullOrEmpty(department.Name))
-            //{
-            //    throw new ArgumentNullException("");
-            //}
+            if (department is null)
+                throw new DepartmentSaveException("El objeto departamento no puede ser nulo.");
 
-            ArgumentNullException.ThrowIfNullOrEmpty(department.Name, "El nombre del departamento es requerido.");
+            if (string.IsNullOrEmpty(department.Name))
+                throw new DepartmentSaveNameException("El nombre del departamento es requerido.");
 
+            if (this.context.Departments.Any(cd => cd.Name == department.Name))
+                throw new DepartmentExistsException("El departamento se encuentra registrado.");
+            
             this.context.Departments.Add(department);
             this.context.SaveChanges();
         }
@@ -63,7 +70,7 @@ namespace School.Data.Daos
 
             ArgumentOutOfRangeException.ThrowIfNegativeOrZero(department.Budget, "El Budget no puede ser negativo o cero");
 
-          
+
             this.context.Departments.Update(department);
             this.context.SaveChanges();
         }
