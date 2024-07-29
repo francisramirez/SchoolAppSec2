@@ -3,6 +3,7 @@
 using School.Data.Context;
 using School.Data.Entities;
 using School.Data.Interfaces;
+using System.ComponentModel;
 
 namespace School.Data.Daos
 {
@@ -22,6 +23,7 @@ namespace School.Data.Daos
 
         public List<Course> GetCourses()
         {
+            
             return this.context.Courses.ToList();
         }
 
@@ -66,10 +68,9 @@ namespace School.Data.Daos
         {
             ArgumentNullException.ThrowIfNull(nameof(course), "El curso no puede nulo.");
 
-            ArgumentNullException.ThrowIfNullOrEmpty(course.Title, "El titulo es requerido.");
+           // ArgumentNullException.ThrowIfNullOrEmpty(course.Title, "El titulo es requerido.");
 
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(course.Credits, "El credito no puede negativo ni cero.");
-
+           
             this.context.Courses.Update(course);
             this.context.SaveChanges();
         }

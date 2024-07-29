@@ -47,7 +47,7 @@ namespace School.Data.Test
 
             // Act
 
-            Course course = null;
+            Course? course = null;
             string message = "El curso no puede nulo.";
 
             // Assert //

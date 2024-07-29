@@ -5,6 +5,9 @@ using School.Data.Interfaces;
 
 namespace School.Data.Daos
 {
+    /// <summary>
+    /// Objetivo del componente
+    /// </summary>
     public class DaoDepartment : IDaoDepartment
     {
         private readonly SchoolContext context;
@@ -65,11 +68,10 @@ namespace School.Data.Daos
                 throw new ArgumentNullException("El departamento no puede ser nulo.");
             }
 
-            ArgumentNullException.ThrowIfNullOrEmpty(department.Name, "El nombre del departamento es requerido.");
+           // ArgumentNullException.ThrowIfNullOrEmpty(department.Name, "El nombre del departamento es requerido.");
 
 
-            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(department.Budget, "El Budget no puede ser negativo o cero");
-
+           
 
             this.context.Departments.Update(department);
             this.context.SaveChanges();
