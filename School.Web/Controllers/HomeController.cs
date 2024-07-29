@@ -10,6 +10,7 @@ namespace School.Web.Controllers
 
         public HomeController(ILogger<HomeController> logger)
         {
+            // otra prueba.
             _logger = logger;
         }
 
