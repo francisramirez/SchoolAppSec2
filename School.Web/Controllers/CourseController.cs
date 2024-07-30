@@ -11,7 +11,7 @@ namespace School.Web.Controllers
 
         public CourseController(ICourseDb courseDb)
         {
-            // Otra prueba II.
+            // Otra prueba III.
             this.courseDb = courseDb;
         }
         // GET: CourseController
