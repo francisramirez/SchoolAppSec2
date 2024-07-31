@@ -1,6 +1,9 @@
 ﻿
 namespace School.Data.Entities
 {
+    /// <summary>
+    /// Entidad de cursos.
+    /// </summary>
     public class Course
     {
         public int Id { get; set; }
